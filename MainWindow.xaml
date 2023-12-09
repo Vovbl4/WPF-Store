@@ -1,0 +1,53 @@
+﻿<Window x:Class="FinalTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalTask"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Background="#FF302437"
+        Icon="/imgs/app.png"
+        Title="Shop App" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="550"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="350"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Column="1" Grid.Row="0" Content="Item Store" Margin="0,10,0,10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
+            <!--><StackPanel Grid.Column="1" Grid.Row="1" x:Name="ItemsStoreScreenPanel" Height="300" VerticalAlignment="Top" Margin="50,0,50,0" Grid.ColumnSpan="4">-->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="1" x:Name="ItemsStoreScreenPanel" Height="280" Margin="0,0,20,0" VerticalAlignment="Top" Grid.ColumnSpan="4">
+                <ListBox x:Name="ItemsListBox" Width="450">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                                <Image Source="{Binding DisplayImagePath}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0" Width="250"/>
+                                <Label Foreground="White" Content="{Binding Name}" FontSize="25" Margin="-5,0,0,0" />
+                                <TextBlock Foreground="Wheat" Text="{Binding Description}" FontSize="20" TextWrapping="Wrap"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Label Foreground="GreenYellow" Content="Price:" FontSize="20" Margin="-5,5,5,5"/>
+                                    <Label Foreground="White" Content="{Binding Price}" FontSize="20" Margin="5"/>
+                                    <Label Foreground="White" Content="$" FontSize="20" Margin="-5,5,5,5"/>
+                                </StackPanel>
+                                <Button x:Name="AddToCartBtn" Foreground="Wheat" Content="Add to cart" Style="{StaticResource MaterialDesignRaisedButton}" FontSize="17" Click="AddToCartBtn_Click" DataContext="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </Grid>
+
+        <StackPanel>
+            <Image Source="/imgs/store.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,50,50,10"/>
+            <TextBlock x:Name="CartInfoBlock" Text="Your cart is empty" Foreground="Wheat" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,10,30,10" TextWrapping="Wrap"/>
+            <Button x:Name="CartPayBtn" Foreground="Wheat" Style="{StaticResource MaterialDesignOutlinedButton}" Content="Purchase" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,10,10,0" FontSize="17" Click="CartPayBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
